@@ -13,7 +13,7 @@
                         <h3 class="title is-3">
                             <span class="title is-bold" style="color: #333333">{{ visit.client.name }}</span>
                         </h3>
-                        <p class="tagline"> <strong>Visit Date: </strong> {{ visit.visit_date }}</p>
+                        <p class="tagline"> <strong>Visit Date: </strong> {{ this.getDate(visit.visit_date) }}</p>
                         <p class="tagline"> <strong>Address: </strong> {{ visit.client.address }}</p>
                         <p class="tagline"> <strong>Area: </strong> {{ visit.client.area._id }}</p>
                     </div>
@@ -27,18 +27,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="column is-12">
-            <div class="profile-options">
-             <div class="tabs is-fullwidth">
-               <ul>
-                 <li class="link is-active"><a><span class="icon"><i class="fa fa-check"></i></span> <span>Visited</span></a></li>
-                 <li class="link"><a><span class="icon"><i class="fa fa-calendar"></i></span> <span>Schedule</span></a></li>
-                 <li class="link"><a><span class="icon"><i class="fa fa-pencil"></i></span> <span>Update</span></a></li>
-                 <li class="link"><a><span class="icon"><i class="fa fa-close"></i></span> <span>Delete</span></a></li>
-               </ul>
-             </div>
-           </div>
         </div>
     </div>
 
@@ -65,6 +53,12 @@ export default {
             this.visit = res.data.visit[0];
         }, function (err) {
         });
+    },
+    methods: {
+        getDate(date) {
+            let dateObj = new Date(date);
+            return dateObj.toLocaleDateString()
+        }
     }
 }
 </script>

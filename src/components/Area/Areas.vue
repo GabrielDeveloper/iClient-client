@@ -1,35 +1,35 @@
 <template>
-<section class="hero is-fullheight is-primary">
-
-  <div class="container hello">
-    <div class="area" v-for="area in areas">
-        <h3 class="title is-3">{{area._id}}</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Last Visit</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="areaVisit in area.visits">
-                    <td>{{ areaVisit.visit.client.name }}</td>
-                    <td>{{ getDate(areaVisit.visit.visit_date) }}</td>
-                    <td class="is-icon">
-                        <router-link :to="{ path: '/visit/' + areaVisit.visit._id, params: { id: areaVisit.visit._id }}" exac>
-                            <i class="fa fa-info-circle"></i>
-                        </router-link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>    
-
-    </div>
-
-
-  </div>
-  </section>
+    <section class="hero is-fullheight is-primary">
+        <div class="columns">
+        <div class="column is-10 is-offset-1">
+            <div class="level header">
+                <div class="level-left">
+                    <h2 class="title is-2">Areas</h2>
+                </div>
+                <div class="level-right">
+                    <router-link :to="{ path: '/area/create/'}"  class="button is-info is-medium" exac>
+                        <span class="icon">
+                            <i class="fa fa-plus"></i>
+                        </span>
+                        <span>New Area</span>
+                    </router-link>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="area in areas">
+                        <td>{{ area._id }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -44,12 +44,12 @@ export default {
     }
   },
     created: function (){
-            this.$http.get(`${HOST}/api/v1/visit/group/area`, {
+            this.$http.get(`${HOST}/api/v1/area`, {
                  headers: {
                     Authorization : localStorage.token
                 }
             }).then(function (res) {
-                this.areas = res.data.visits;
+                this.areas = res.data.areas;
             }, function (err) {
                 console.log(err);
             });

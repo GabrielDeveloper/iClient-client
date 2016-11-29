@@ -14,6 +14,7 @@
       <div class="nav-right nav-menu" v-bind:class="{ 'is-active': toogle }">
         <router-link to="/" class="nav-item is-tab" exact>Home</router-link>
         <router-link to="/client" class="nav-item is-tab" exact>Client</router-link>
+        <router-link to="/visits" class="nav-item is-tab" exact>Last Visits</router-link>
         <router-link to="/area" class="nav-item is-tab" exact>Area</router-link>
         <span class="nav-item">
           <a class="button" @click="logout">

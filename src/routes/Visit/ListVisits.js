@@ -1,8 +1,8 @@
 import auth from '../../auth'
-import Visit from '../../components/Visit/Visit.vue'
+import Visits from '../../components/Visit/Visits.vue'
 
 export default {
     'path' : '/visits',
-    component: Visit,
+    component: Visits,
     beforeEnter: auth.requireAuth,
 }

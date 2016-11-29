@@ -1,8 +1,8 @@
-import Area from '../../components/Area/Areas.vue'
+import AreaList from './AreaList'
+import AreaCreate from './AreaCreate'
 import auth from '../../auth'
 
-export default [{
-    'path': '/area',
-    component: Area,
-    beforeEnter: auth.requireAuth
-}]
+export default [
+    AreaList,
+    AreaCreate
+]
