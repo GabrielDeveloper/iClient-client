@@ -5,31 +5,31 @@
                 <h1 class="title">
                     Register a Client
                 </h1>
-                <div class="box">
+                <form class="box" v-on:submit.prevent="createClient()">
                     <label class="label">Name</label>
                     <p class="control has-icon">
-                        <input class="input" type="text" placeholder="John Smith" v-model="form.name">
+                        <input class="input" type="text" placeholder="John Smith" v-model="form.name" required>
                         <i class="fa fa-id-card-o" />
                     </p>
                     <label class="label">Phone</label>
                     <p class="control has-icon">
-                        <input class="input" type="text" placeholder="21 99999-00000" v-model="form.phone">
+                        <input class="input" type="text" placeholder="21 99999-00000" v-model="form.phone" required>
                         <i class="fa fa-phone" />
                     </p>
                     <label class="label">Address</label>
                     <p class="control has-icon">
-                        <input class="input" type="text" placeholder="Street 32 - Nª 23" v-model="form.address">
+                        <input class="input" type="text" placeholder="Street 32 - Nª 23" v-model="form.address" required>
                         <i class="fa fa-address-card" />
                     </p>
                     <label class="label">City</label>
                     <p class="control has-icon">
-                        <input class="input" type="text" placeholder="London" v-model="form.city">
+                        <input class="input" type="text" placeholder="London" v-model="form.city" required>
                         <i class="fa fa-address-book" />
                     </p>
                     <label class="label">Area</label>
                     <p class="control has-icon">
                          <span class="select">
-                            <select v-model="form.area">
+                            <select v-model="form.area" required>
                               <option v-for="area in areas">{{ area._id}}</option>
                             </select>
                         </span>
@@ -37,20 +37,20 @@
                     </p>
                     <label class="label">Frequency</label>
                     <p class="control has-icon">
-                        <input class="input" type="number" placeholder="10" v-model="form.frequency">
+                        <input class="input" type="number" placeholder="10" v-model="form.frequency" required>
                         <i class="fa fa-calendar-check-o" />
                     </p>
                     <label class="label">Ability</label>
                     <p class="control has-icon">
-                        <input class="input" type="number" placeholder="200" v-model="form.ability">
+                        <input class="input" type="number" placeholder="200" v-model="form.ability" required>
                         <i class="fa fa-shopping-basket" />
                     </p>
                     <hr>
                     <p class="control">
-                        <button class="button is-primary" @click="createClient()">Register</button>
-                        <button class="button is-default">Cancel</button>
+                        <button class="button is-primary" type="submit">Register</button>
+                        <button class="button is-default" @click="back()">Cancel</button>
                     </p>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -93,6 +93,9 @@ export default {
             }, function (err) {
                 console.log(err);
             });
+        },
+        back() {
+            this.$router.push('/client');
         },
         areaSelected(area) {
             let areaSelected = "";

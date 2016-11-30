@@ -5,16 +5,16 @@
                 <h1 class="title">
                     Register an Area
                 </h1>
-                <div class="box">
+                <form class="box" v-on:submit.prevent="createArea()">
                     <label class="label">Area</label>
                     <p class="control has-icon">
-                        <input class="input" type="text" placeholder="Center" v-model="form._id">
+                        <input class="input" type="text" placeholder="Center" v-model="form._id" required>
                         <i class="fa fa-map-marker" />
                     </p>
                     <label class="label">Parent</label>
                     <p class="control has-icon">
                          <span class="select">
-                            <select v-model="form.parent">
+                            <select v-model="form.parent" required>
                               <option v-for="area in areas">{{ area._id}}</option>
                             </select>
                         </span>
@@ -22,10 +22,10 @@
                     </p>
                     <hr>
                     <p class="control">
-                        <button class="button is-primary" @click="createArea()">Register</button>
-                        <button class="button is-default">Cancel</button>
+                        <button class="button is-primary" type="submit">Register</button>
+                        <button class="button is-default" @click="back()">Cancel</button>
                     </p>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@ export default {
     methods: {
         createArea() {
             console.log(this.form);
-            this.$http.post(`${HOST}/api/v1/area`, 
+            this.$http.post(`${HOST}/api/v1/area`,
                 this.form,
                 {
                  headers: {
@@ -68,6 +68,9 @@ export default {
             }, function (err) {
                 console.log(err);
             });
+        },
+        back() {
+            this.$router.push('/area');
         }
     }
 }
